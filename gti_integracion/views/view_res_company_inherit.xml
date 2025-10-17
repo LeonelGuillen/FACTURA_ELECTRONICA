@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="numero_cuenta_res_company_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.inherited</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="after">
+                <page string="Facturación Electrónica GTI" name="gti_fe_data">
+                    <group name="Basic_Infomation" string="Información Básica">
+                        <group>
+                            <label for="economic_activity_id"/>
+                            <div>
+                                <field
+                                    name="economic_activity_id"
+                                    domain="[('id', 'in', economic_activities_ids)]"
+                                    options="{'no_create': True, 'active_test': False}"/>
+                                <button
+                                    name="action_get_economic_activities"
+                                    type="object"
+                                    string="Consultar Actividades"
+                                    class="btn-link mb-1 px-0"/>
+                            </div>
+                            <field
+                                name="economic_activities_ids"
+                                invisible="0"
+                                readonly="1"
+                                context="{'partner_id': id}"
+                                widget="many2many_tags"/>
+                            <field name="tz"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Credenciales GTI">
+                            <field name="gti_NumCuenta"/>
+                            <field name="gti_Usuario"/>
+                            <field name="gti_Clave"/>
+                            <field name="environment" widget="radio"/>
+                            <field name="gti_url"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

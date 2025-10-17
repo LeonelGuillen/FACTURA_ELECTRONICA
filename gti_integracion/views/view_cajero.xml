@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_cajero_search" model="ir.ui.view">
+        <field name="name">cajero.search</field>
+        <field name="model">cajero</field>
+        <field name="arch" type="xml">
+            <search string="Cajeros">
+                <field string="Nombre" name="name" filter_domain="[('name', 'ilike', self)]"/>
+                <field string="Empleado" name="empleadoAsignado" filter_domain="[('empleadoAsignado', 'ilike', self)]"/>
+                <field string="Activo" name="activo" filter_domain="[('activo', '=', True)]"/>
+                <field string="Sede" name="terminal" filter_domain="[('terminal', '=', self)]"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_cajero_tree" model="ir.ui.view">
+        <field name="name">cajero.tree</field>
+        <field name="model">cajero</field>
+        <field name="arch" type="xml">
+            <list default_order="name desc">
+                <field name="activo"/>
+                <field name="name"/>
+                <field name="empleadoAsignado"/>
+                <field name="sucursal"/>
+                <field name="terminal" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cajero_form" model="ir.ui.view">
+        <field name="name">cajero.form</field>
+        <field name="model">cajero</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Información General de la Caja">
+                            <field name="activo" widget="boolean_toggle"/>
+                            <field name="name" force_save="1" readonly="1"/>
+                            <field name="empleadoAsignado"  />
+                            <field name="terminal" />
+                            <field name="sucursal" />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cajero" model="ir.actions.act_window">
+        <field name="name">Cajeros</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cajero</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="gti_integracion.view_cajero_search"/>
+        <field name="context">{'search_default_activo': 'Activo'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_cajero"
+              name="Cajeros"
+              parent="menu_cajero_sub"
+              action="action_cajero"
+              sequence="110"/>
+
+</odoo>

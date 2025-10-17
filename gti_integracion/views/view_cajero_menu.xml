@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_gti_integracion_root"
+              name="GTI"
+              groups="gti_integracion.cajero_visualizacion_menu"
+              sequence="10"/>
+
+    <!--region Cajero -->
+    <menuitem id="menu_cajero_root"
+              name="Cajeros"
+              parent="menu_gti_integracion_root"
+              sequence="10"/>
+
+    <menuitem id="menu_cajero_sub"
+              name="Cajeros"
+              parent="menu_cajero_root"
+              sequence="100"/>
+    <!--endregion-->
+
+    <!--region Documentos  -->
+    <menuitem id="menu_documento_hacienda_root"
+              name="Documentos Hacienda"
+              parent="menu_gti_integracion_root"
+              groups="gti_integracion.documento_hacienda_visualizacion_menu"
+              sequence="20"/>
+
+    <menuitem id="menu_documento_hacienda_sub"
+              name="Documentos Hacienda"
+              parent="menu_documento_hacienda_root"
+              sequence="200"/>
+    <!--endregion-->
+
+</odoo>

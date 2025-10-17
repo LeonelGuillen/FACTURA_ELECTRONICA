@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.gti.integracion</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="75"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//block[@id='invoicing_settings']" position="before">
+                    <div class="app_settings_block" data-string="GTI" string="GTI" data-key="gti_integracion">
+                        <h2>GTI Integración</h2>
+                        <div class="row mt16 o_settings_container" name="default_gti_integracion_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                 id="default_taxes"
+                                 title="These taxes are set in any new product created.">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Configuración</span>
+                                    <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                    <div class="text-muted">
+                                        Configuración de Cuenta GTI.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <label string="Número de Cuenta" for="gti_NumCuenta" class="col-lg-3 o_light_label"/>
+                                            <field name="gti_NumCuenta" widget="char"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Usuario GTI" for="gti_Usuario" class="col-lg-3 o_light_label"/>
+                                            <field name="gti_Usuario"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Clave GTI" for="gti_Clave" class="col-lg-3 o_light_label"/>
+                                            <field name="gti_Clave" />
+                                        </div>
+<!--                                        <div class="row mt16">-->
+<!--                                            <label string="Código de actividad" for="gti_Cod_Actividad" class="col-lg-3 o_light_label"/>-->
+<!--                                            <field name="gti_Cod_Actividad" />-->
+<!--                                        </div>-->
+                                        <div class="row mt16">
+                                            <label string="URL API GTI" for="gti_Url" class="col-lg-3 o_light_label"/>
+                                            <field name="gti_Url" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_gti_integracion_configuration" model="ir.actions.act_window">
+            <field name="name">Configuraciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'gti_integracion'}</field>
+        </record>
+    </data>
+</odoo>

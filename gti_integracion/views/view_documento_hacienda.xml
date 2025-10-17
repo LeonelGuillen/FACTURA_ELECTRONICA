@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_documento_hacienda_search" model="ir.ui.view">
+        <field name="name">documento.hacienda.search</field>
+        <field name="model">documento.hacienda</field>
+        <field name="arch" type="xml">
+            <search string="Documentos">
+                <field string="Nombre" name="name" filter_domain="[('name', 'ilike', self)]"/>
+                <field string="Tipo Documento" name="tipo" filter_domain="[('tipo', 'ilike', self)]"/>
+                <field string="Factura" name="factura" filter_domain="[('factura', 'ilike', self)]"/>
+                <field string="Activo" name="activo" filter_domain="[('activo', '=', True)]"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_documento_hacienda_tree" model="ir.ui.view">
+        <field name="name">documento.hacienda.tree</field>
+        <field name="model">documento.hacienda</field>
+        <field name="arch" type="xml">
+            <list default_order="consecutivo desc">
+                <field name="activo"/>
+                <field name="name"/>
+                <field name="factura"/>
+                <field name="consecutivo"/>
+                <field name="company_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_documento_hacienda_form" model="ir.ui.view">
+        <field name="name">documento.hacienda.form</field>
+        <field name="model">documento.hacienda</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="crear_factura" string="Enviar Factura" class="btn-primary" type="object" invisible="consecutivo"/>
+                    <button name="crear_nota_credito" string="Enviar NC" class="btn-primary" type="object" invisible="consecutivo and factura_NC"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Información General">
+                            <field name="activo" widget="boolean_toggle"/>
+                            <field name="name" force_save="1" readonly="1"/>
+                        </group>
+                        <group string="Información General">
+                            <field name="json" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Información de Documento">
+                            <field name="consecutivo_Interno" force_save="1" readonly="1"/>
+                            <field name="consecutivo" force_save="1" readonly="1"/>
+                            <field name="clave" force_save="1" readonly="1"/>
+                            <field name="fecha_Emsion" force_save="1" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Información de los Estados">
+                            <field name="tipo" widget="badge"/>
+                            <field name="codigo" widget="badge"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Factura Interna">
+                            <field name="factura" widget="badge" />
+                            <field name="factura_NC" widget="badge" />
+                            <field name="factura_ND" widget="badge" />
+                            <field name="company_id" widget="badge" />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_documento_hacienda" model="ir.actions.act_window">
+        <field name="name">Documentos Hacienda</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">documento.hacienda</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="gti_integracion.view_documento_hacienda_search"/>
+        <field name="context">{'search_default_activo': 'Activo'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_documento_hacienda"
+              name="Documentos Hacienda"
+              parent="menu_documento_hacienda_sub"
+              action="action_documento_hacienda"
+              sequence="210"/>
+
+</odoo>

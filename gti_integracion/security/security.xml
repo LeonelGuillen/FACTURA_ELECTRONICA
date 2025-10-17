@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--region Permisos Cajero -->
+        <record id="cajero" model="ir.module.category">
+            <field name="name">Cajero</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="cajero_lectura" model="res.groups">
+            <field name="name">Lectura</field>
+            <field name="category_id" ref="cajero"/>
+        </record>
+        <record id="cajero_escritura" model="res.groups">
+            <field name="name">Escritura</field>
+            <field name="category_id" ref="cajero"/>
+        </record>
+        <record id="cajero_creacion" model="res.groups">
+            <field name="name">Creación</field>
+            <field name="category_id" ref="cajero"/>
+        </record>
+        <record id="cajero_eliminacion" model="res.groups">
+            <field name="name">Eliminación</field>
+            <field name="category_id" ref="cajero"/>
+        </record>
+
+        <record id="cajero_visualizacion" model="res.groups">
+            <field name="name">Visualizar</field>
+            <field name="category_id" ref="cajero"/>
+        </record>
+        <record id="cajero_visualizacion_menu" model="res.groups">
+            <field name="name">Visualizar Menu</field>
+            <field name="category_id" ref="cajero"/>
+        </record>
+
+        <!--endregion -->
+
+        <!--region Permisos Documento Hacienda -->
+        <record id="documento_hacienda" model="ir.module.category">
+            <field name="name">Documentos Hacienda</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="documento_hacienda_lectura" model="res.groups">
+            <field name="name">Lectura</field>
+            <field name="category_id" ref="documento_hacienda"/>
+        </record>
+        <record id="documento_hacienda_escritura" model="res.groups">
+            <field name="name">Escritura</field>
+            <field name="category_id" ref="documento_hacienda"/>
+        </record>
+        <record id="documento_hacienda_creacion" model="res.groups">
+            <field name="name">Creación</field>
+            <field name="category_id" ref="documento_hacienda"/>
+        </record>
+        <record id="documento_hacienda_eliminacion" model="res.groups">
+            <field name="name">Eliminación</field>
+            <field name="category_id" ref="documento_hacienda"/>
+        </record>
+
+        <record id="documento_hacienda_visualizacion" model="res.groups">
+            <field name="name">Visualizar</field>
+            <field name="category_id" ref="documento_hacienda"/>
+        </record>
+        <record id="documento_hacienda_visualizacion_menu" model="res.groups">
+            <field name="name">Visualizar Menu</field>
+            <field name="category_id" ref="documento_hacienda"/>
+        </record>
+
+        <!--endregion -->
+
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="codigo_tarifa_account_taxt_form_inherit" model="ir.ui.view">
+        <field name="name">account.tax.inherited</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_scope']" position="after">
+                <field name="codigo_Imp"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
